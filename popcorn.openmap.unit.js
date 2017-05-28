@@ -1,31 +1,31 @@
 test( "Popcorn OpenMap Plugin", function () {
-  
+
   var popped = Popcorn("#video"),
-    expects = 14, 
+    expects = 14,
     count = 0;
-  
+
   expect(expects);
-  
+
   function plus() {
     if ( ++count===expects) {
       start();
     }
   }
-  
+
   stop();
 
   ok ('openmap' in popped, "openmap is a method of the popped instance");
   plus();
-  
+
   ok ( document.getElementById('map').innerHTML === "", "initially, there is nothing inside map" );
   plus();
-  
+
   ok ( document.getElementById('map2').innerHTML === "", "initially, there is nothing inside map2" );
   plus();
 
   ok ( document.getElementById('map3').innerHTML === "", "initially, there is nothing inside map3" );
   plus();
-  
+
   popped.openmap({
     start: 0,
     end: 5,
@@ -70,7 +70,7 @@ test( "Popcorn OpenMap Plugin", function () {
       plus();
       ok (document.getElementById('openmapdiv1'), "First map is on the page" );
       plus();
-      equals (document.getElementById('openmapdiv1').offsetParent.id, "map", "First map is inside the 'map' div" );
+      equal (document.getElementById('openmapdiv1').offsetParent.id, "map", "First map is inside the 'map' div" );
       plus();
     }
   } );
@@ -78,7 +78,7 @@ test( "Popcorn OpenMap Plugin", function () {
     if( popped.currentTime() > 3 && popped.currentTime() <= 5 ) {
       ok (document.getElementById('openmapdiv2'), "Second map is on the page" );
       plus();
-      equals (document.getElementById('openmapdiv2').offsetParent.id, "map2", "Second map is inside the 'map2' div" );
+      equal (document.getElementById('openmapdiv2').offsetParent.id, "map2", "Second map is inside the 'map2' div" );
       plus();
     }
   } );
@@ -86,7 +86,7 @@ test( "Popcorn OpenMap Plugin", function () {
     if( popped.currentTime() > 3 && popped.currentTime() <= 5 ) {
       ok (document.getElementById('openmapdiv3'), "Third map is on the page" );
       plus();
-      equals (document.getElementById('openmapdiv3').offsetParent.id, "map3", "Third map is inside the 'map3' div" );
+      equal (document.getElementById('openmapdiv3').offsetParent.id, "map3", "Third map is inside the 'map3' div" );
       plus();
     }
   } );
@@ -94,14 +94,14 @@ test( "Popcorn OpenMap Plugin", function () {
     if( popped.currentTime() > 3 && popped.currentTime() <= 5 ) {
       ok (document.getElementById('openmapdiv4'), "Fourth map is on the page" );
       plus();
-      equals (document.getElementById('openmapdiv4').offsetParent.id, "map4", "Fourth map is inside the 'map4' div" );
+      equal (document.getElementById('openmapdiv4').offsetParent.id, "map4", "Fourth map is inside the 'map4' div" );
       plus();
     }
   } );
   popped.exec( 6, function() {
     if( popped.currentTime() > 5  ) {
-      ok (document.getElementById('openmapdiv2').style.display === "none" && 
-          document.getElementById('openmapdiv3').style.display === "none" && 
+      ok (document.getElementById('openmapdiv2').style.display === "none" &&
+          document.getElementById('openmapdiv3').style.display === "none" &&
           document.getElementById('openmapdiv4').style.display === "none" &&
           document.getElementById('openmapdiv1').style.display === "none", "All three maps are no longer visible" );
       plus();
